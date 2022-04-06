@@ -1,7 +1,9 @@
-resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
+resource "digitalocean_vpc" "main" {
+  name     = "${var.service}-${var.environment}-vpc"
+  region   = var.region
+  ip_range = "10.0.1.0/24"
 }
 
 output "vpc_id" {
-  value = aws_vpc.main.id
+  value = digitalocean_vpc.main.id
 }

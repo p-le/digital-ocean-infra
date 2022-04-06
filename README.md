@@ -1,37 +1,36 @@
 # How to use this template
 
-Using Terragrunt to provision infrastructure on AWS.
+Using Terragrunt to provision infrastructure on Digital Ocean.
 
 Using VS Code Remote Containers.
 
 ## Step 1: Setup VS Code
 
 - Install VS Code Remote Container Extensions
+-
 
-## Step 2: Prepare AWS credentials
+## Step 2: Prepare Digital Ocean Personal Access Token credentials
 
-- Create new IAM User
-- Grant some IAM Roles. For examples: `IAMFullAccess`, `EC2FullAccess`, `S3FullAccess` or `AdministratorAccess`
-- Generate new `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+- Access Dashboard > Menu: API > Tokens/Keys
+- Click: Generate New Token
 - Create File: `.env` based on `.env.example`
+- Update value of `DIGITALOCEAN_ACCESS_TOKEN`
 
 ## Step 3: Develop
 
 1. Update Terraform Code in `modules`
-2. Set commond variables: `environments/common_vars.yaml`. Copy/Paste from `environments/common_vars.yaml.example`
+2. Copy/Paste from `infrastructure-live/common_vars.yaml.example` to create `infrastructure-live/common_vars.yaml`
 3. Execute Terragrunt commands
 
 ```
-cd environments/demo
+cd infrastructure-live/demo
 terragrunt run-all plan
 terragrunt run-all apply
 ```
 
-**MY NOTES:**
+# Reference
 
-- `modules` folder: To make this template simple to setup, I've used local Terraform modules. You can create another GitHub Repositories as Terraform Modules and refer to them
-- `infrastructure-live/demo` folder: This is template's temporary folder. Generally it should be environment name: `staging`, `production`, `canary`, `qa`, `production-canary` and so on.
-- `infrastructure-live/common_vars.yaml`: this file's content will change depends on the person who use this repository. so I've ignore it in `.gitignore`. Same as `terraform.tfvars` and `.env`
+- Digital Ocean **[Terraform Provider](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs)**
 
 # How to Use GitHub Actions Workflows
 

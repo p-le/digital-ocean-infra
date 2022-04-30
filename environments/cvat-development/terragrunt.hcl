@@ -1,11 +1,6 @@
-locals {
-  common_vars = yamldecode(file("common_vars.yaml"))
-  environment = split("/", path_relative_to_include())[0]
-}
-
 inputs = {
-  service     = local.common_vars.service
-  environment = local.environment
+  service     = "kantancode-cvat"
+  environment = "development"
 }
 
 generate "provider" {
@@ -22,7 +17,6 @@ terraform {
 }
 
 provider "digitalocean" {
-
 }
 EOF
 }
